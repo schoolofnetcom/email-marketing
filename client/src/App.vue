@@ -8,9 +8,9 @@
             <span>{{ me.user.name }}</span>
           </div>
         </li>
-        <li><a href=""><i class="material-icons">home</i></a></li>
-        <li><a href=""><i class="material-icons">email</i></a></li>
-        <li><a href=""><i class="material-icons">supervisor_account</i></a></li>
+        <li><a href="#/"><i class="material-icons">home</i></a></li>
+        <li><a href="#/email"><i class="material-icons">email</i></a></li>
+        <li><a href="#/lists"><i class="material-icons">supervisor_account</i></a></li>
         <li><a href=""><i class="material-icons">lock</i></a></li>
         <li><a href=""><i class="material-icons">exit_to_app</i></a></li>
       </ul>

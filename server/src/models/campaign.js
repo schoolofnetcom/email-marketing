@@ -11,7 +11,7 @@ const Campaign = mongoose.Schema({
     unsubscribe: { type: Number, default: 0 },
     bounces: { type: Number, default: 0 },
     lists: [
-        {title: String, type: ObjectId, ref: 'List'}
+        {type: ObjectId, ref: 'List'}
     ]
 });
 

@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('./src/db/connection');
 const cors = require('cors');
 const routes = require('./src/routes');
+const validator = require('express-validator');
 
 const app = express();
 app.use(cors());
@@ -22,6 +23,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(validator());
 
 routes(app);
 

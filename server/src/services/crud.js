@@ -21,6 +21,17 @@ CrudService.prototype.get = function (id) {
     });
 }
 
+CrudService.prototype.insert = function (data) {
+    return new Promise((resolve) => {
+        this.model.create(data, (err, result) => {
+            if (err) {
+                return reject({err: err});
+            }
+            return resolve({data: result})
+        });
+    });
+}
+
 CrudService.prototype.update = function (id, data) {
     return new Promise((resolve) => {
         this.model.findByIdAndUpdate(id, {$set: data}, (err, result) => {

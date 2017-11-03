@@ -10,15 +10,17 @@ const Lead = mongoose.Schema({
         }
     ],
     lists: [
-        {title: String, type: ObjectId, ref: 'List'}
+        {type: ObjectId, ref: 'List'}
     ],
     actions: [
         {
-            type: ObjectId,
-            ref: 'List',
+            campaign: {
+                type: ObjectId,
+                ref: 'List',
+            },
             action: [
                 {
-                    type: String,
+                    typeAction: String,
                     link: String,
                     date: Date
                 }
