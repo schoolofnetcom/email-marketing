@@ -10,10 +10,21 @@ services:
     image: "node:8.6.0"
     user: "node"
     working_dir: /home/node/app
-    environment: 
+    environment:
       - NODE_ENV=development
     volumes:
       - ./:/home/node/app
     ports:
       - "3000:3000"
     command: "node_modules/.bin/nodemon -L --exec npm start"
+  sendmail:
+    image: "node:8.6.0"
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./:/home/node/app
+    ports:
+      - "3000:3000"
+    command: "node bin/send_email_service.js"

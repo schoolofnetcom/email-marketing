@@ -40,6 +40,47 @@
                 </div>
             </div>
         </div>
+
+        <div class="col s6">
+            <div class="card grey lighten-4">
+                <div class="card-content">
+                    <span class="card-title">Campanha enviada</span>
+                    <iframe :src="rendered_mail" style="width: 100%; height: 300px; border: none"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <div class="col s12">
+            <div class="card grey lighten-4">
+                <div class="card-content">
+                    <span class="card-title">Leads enviados</span>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>email</th>
+                                <th>listas</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(lead, index) in leads">
+                                <td>{{ index + 1 }}</td>
+                                <td>{{ lead.email }}</td>
+                                <td>
+                                    <div class="chip" v-for="chip in lead.lists">{{ chip.title }}</div>
+                                </td>
+                                <td>
+                                    <a :href="'#/leads/' + lead._id" class="btn">ver</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
     </div>
 </template>
 
@@ -48,10 +89,27 @@ export default {
   computed: {
     email: function () {
       return this.$store.state.email.email
+    },
+    leads: function () {
+      return this.$store.state.lead.leads
+    },
+    rendered_mail: function () {
+      return process.env.SERVER + '/campaigns/email-render/' + this.email._id
+    }
+  },
+  methods: {
+    getLeads: function () {
+      if (this.email.lists) {
+        let lists = this.email.lists.join(',')
+        this.$store.dispatch('getAllLeads', lists)
+      } else {
+        setTimeout(this.getLeads(), 2000)
+      }
     }
   },
   mounted () {
     this.$store.dispatch('getOne', this.$route.params.id)
+    this.getLeads()
   }
 }
 </script>

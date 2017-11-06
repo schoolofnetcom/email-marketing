@@ -64,13 +64,14 @@ module.exports = function () {
     }
 
     controller.leadsByList = function (req, res) {
-        model.find({lists: { $in: [req.params.id] }}).populate('lists').exec(function (err, leads) {
+        let lists = req.params.id.split(',');
+        model.find({ lists: { $in: lists }}).populate('lists').exec(function (err, leads) {
             return res.json({data: leads});
         });
     }
 
     controller.view = function (req, res) {
-        model.findById(req.params.id).populate('lists').exec((err, result) => {
+        model.findById(req.params.id).populate('lists actions.campaign').exec((err, result) => {
             if (err) {
                 return res.status(404).json(err);
             }

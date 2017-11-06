@@ -20,6 +20,7 @@
                             <label for="campanhaStart">Data de início</label>
                         </div>
                         <div class="input-filter">
+                            <strong>Disparar para a lista:</strong>
                             <select multiple class="browser-default" v-model="data.lists">
                                 <option v-for="list in lists" :value="list._id">{{ list.title }}</option>
                             </select>
