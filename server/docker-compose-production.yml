@@ -16,7 +16,7 @@ services:
       - ./:/home/node/app
     ports:
       - "3000:3000"
-    command: "node_modules/.bin/nodemon -L --exec npm start"
+    command: "npm start"
   sendmail:
     image: "node:8.6.0"
     user: "node"
