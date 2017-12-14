@@ -12,6 +12,7 @@ services:
     working_dir: /home/node/app
     environment:
       - NODE_ENV=development
+      - MONGODB_URI=mongodb://mongo:27017/email_marketing
     volumes:
       - ./:/home/node/app
     ports:
