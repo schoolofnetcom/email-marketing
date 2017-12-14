@@ -14,15 +14,15 @@ module.exports = function (app) {
             let query = {email: user.username, password: user.password};
 
             let callback = function (err, user) {
-            if (err) {
-                return res.status(500).json({err: err});
-            }
+                if (err) {
+                    return res.status(500).json({err: err});
+                }
 
-            if (!user) {
-                return res.status(401).send('Unauthorized');
-            }
+                if (!user) {
+                    return res.status(401).send('Unauthorized');
+                }
 
-            let payload = {id: user.id};
+                let payload = {id: user.id};
                 let token = jwt.encode(payload, cfg.jwrSecret);
                 return res.json({token: token});
             }
